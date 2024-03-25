@@ -1,5 +1,11 @@
 
+.product-img{
+    width: 10rem;
+}
 
+.quantity-btn-decrese,.quantity-btn-increase{
+    cursor: pointer;
+}
 .cart-btn{
     position: fixed;
     top:90vh;

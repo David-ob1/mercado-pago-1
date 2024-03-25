@@ -48,8 +48,50 @@ cart.forEach(product => {
     `
 
     modalContainer.append(modalBody)
+
+    const decrese = modalBody.querySelector(".quantity-btn-decrese")
+    decrese.addEventListener("click",()=>{
+
+        if(product.quantity !== 1){
+            product.quantity--
+            displayCart()
+
+        }
+
+    })
+
+
+    const increase = modalBody.querySelector(".quantity-btn-increase")
+    increase.addEventListener("click",()=>{
+            product.quantity++
+            displayCart()
+    })
+
+    //delete
+    const deleteProduct = modalBody.querySelector(".delete-product")
+
+    deleteProduct.addEventListener("click", ()=>{
+        deleteCartProduct(product.id)
+
+    })
 })
+
+//modal footer
+
+const total = cart.reduce((acc,el) => acc + el.price * el.quantity,0)
+
+const modalFooter = document.createElement("div")
+modalFooter.className = "modal-footer"
+modalFooter.innerHTML = `
+    <div class="total-price"> Total:${total}</div>
+`
+modalContainer.append(modalFooter)
 
 }
 
 cartBtn.addEventListener("click",displayCart)
+
+const deleteCartProduct = (id)=>{
+    const foundId = cart.findIndex((element)=> element.id === id )
+    console.log(foundId)
+}
